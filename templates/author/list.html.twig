@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des Auteurs</h1>
+    <h3> <p>Nombre total d'auteurs : {{ authors|length }}</p> </h3>
+    <ul>
+        {% for author in authors %}
+            <li>
+                <img src="{{ author.picture }}" alt="{{ author.username }}" width="100"> <br>
+                <strong>{{ author.username|upper }}</strong> 
+
+                <a href="{{ path('author_details', {'id': author.id}) }}" target="_blank">
+                {{ author.username|upper }}
+                </a>
+                <br>
+                Email: {{ author.email }}
+                <br>
+                {% if author.nb_books > 0 %}
+                    Nombre de livres: {{ author.nb_books }}
+                {% else %}
+                    Aucun livre publié.
+                {% endif %}
+                <br>
+            </li> <br>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
